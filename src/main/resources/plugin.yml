@@ -1,0 +1,6 @@
+name: Playercount
+version: '${project.version}'
+main: at.late.playercount.Main
+commands:
+  checkplayers:
+    permission: op
