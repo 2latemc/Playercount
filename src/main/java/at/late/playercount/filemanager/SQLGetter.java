@@ -20,6 +20,9 @@ public class SQLGetter {
         try{
             preparedStatement = SQL.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS PLAYERCOUNT " + "(SERVER VARCHAR(100),PLAYERS VARCHAR(100))");
             preparedStatement.executeUpdate();
+            preparedStatement = SQL.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS SERVERVALUES " + "(SERVER VARCHAR(100),SERVERVALUE VARCHAR(100))");
+            preparedStatement.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -55,5 +58,27 @@ public class SQLGetter {
             e.printStackTrace();
         }
         return 0;
+    }
+
+    public static void addValue(String serverName, String value) throws SQLException {
+        PreparedStatement preparedStatement1 = SQL.getConnection().prepareStatement ("REPLACE INTO SERVERVALUES(SERVER,PLAYERS) VALUES (?,?)");
+        preparedStatement1.setString(1, serverName);
+        preparedStatement1.setString(2, value);
+        preparedStatement1.executeUpdate();
+    }
+
+    public static String getValue(String serverName) {
+        try {
+            PreparedStatement preparedStatement = SQL.getConnection().prepareStatement("SELECT SERVERVALUE FROM SERVERVALUES WHERE SERVER=?");
+            preparedStatement.setString(1, serverName);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                return resultSet.getString("SERVERVALUE");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

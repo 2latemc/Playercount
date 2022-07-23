@@ -4,3 +4,5 @@ main: at.late.playercount.Main
 commands:
   checkplayers:
     permission: op
+  addvalue:
+    permission: op

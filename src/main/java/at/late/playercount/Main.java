@@ -1,5 +1,6 @@
 package at.late.playercount;
 
+import at.late.playercount.commands.AddValue;
 import at.late.playercount.commands.CheckForServer;
 import at.late.playercount.filemanager.FileManager;
 import at.late.playercount.filemanager.MySQL;
@@ -24,6 +25,7 @@ public final class Main extends JavaPlugin {
         Scheduler.run();
 
         getCommand("checkplayers").setExecutor(new CheckForServer());
+        getCommand("addvalue").setExecutor(new AddValue());
     }
 
     @Override
