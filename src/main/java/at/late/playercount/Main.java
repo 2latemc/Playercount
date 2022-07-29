@@ -23,7 +23,7 @@ public final class Main extends JavaPlugin {
         FileManager.setup();
         instance = this;
         Scheduler.run();
-
+        SQL = new MySQL();
         getCommand("checkplayers").setExecutor(new CheckForServer());
         getCommand("addvalue").setExecutor(new AddValue());
     }
